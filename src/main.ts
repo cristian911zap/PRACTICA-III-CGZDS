@@ -17,8 +17,6 @@ async function bootstrap() {
     .setVersion('1.0')
     .addServer('http://localhost:3000', 'Servidor local de desarrollo')
     .addServer('https://baseline-crud.onrender.com', 'Servidor de producción (Render)')
-    .addTag('auth', 'Endpoints de autenticación')
-    .addTag('preguntas', 'Endpoints para gestión de preguntas')
     .addBearerAuth(
       {
         type: 'http',
