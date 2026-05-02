@@ -19,7 +19,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { CreatePreguntaDto } from './dto/create-pregunta.dto';
 import { UpdatePreguntaDto } from './dto/update-pregunta.dto';
 import { PreguntasService } from './preguntas.service';
-import { ApiOperation, ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { Pregunta } from './entities/pregunta.entity';
 
 @Controller('preguntas')
@@ -28,6 +28,7 @@ export class PreguntasController {
   constructor(private readonly preguntasService: PreguntasService ) {}
   // Crear pregunta
   @Post()
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Crear una nueva pregunta' })
   @ApiResponse({ status: 201, description: 'Pregunta creada exitosamente', type: Pregunta })
   @ApiResponse({ status: 401, description: 'No autorizado - Token inválido o faltante' })
@@ -41,6 +42,7 @@ export class PreguntasController {
 
   // Listar todas las preguntas (con filtros)
   @Get()
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Obtener todas las preguntas (con paginación y filtros)' })
   @ApiQuery({ name: 'page', required: false, example: 1, description: 'Número de página' })
   @ApiQuery({ name: 'limit', required: false, example: 10, description: 'Elementos por página' })
@@ -57,6 +59,7 @@ export class PreguntasController {
 
   // Obtener pregunta por ID
   @Get(':id')
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Obtener una pregunta por ID' })
   @ApiParam({ name: 'id', description: 'UUID de la pregunta', example: '123e4567-e89b-12d3-a456-426614174000' })
   @ApiResponse({ status: 200, description: 'Pregunta encontrada', type: Pregunta })
@@ -68,6 +71,7 @@ export class PreguntasController {
 
   // Actualizar pregunta
   @Put(':id')
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Actualizar una pregunta (solo el dueño)' })
   @ApiParam({ name: 'id', description: 'UUID de la pregunta' })
   @ApiResponse({ status: 200, description: 'Pregunta actualizada exitosamente', type: Pregunta })
@@ -87,6 +91,7 @@ export class PreguntasController {
 
   // Eliminar pregunta
   @Delete(':id')
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Eliminar una pregunta (solo el dueño)' })
   @ApiParam({ name: 'id', description: 'UUID de la pregunta' })
   @ApiResponse({ status: 204, description: 'Pregunta eliminada exitosamente' })
@@ -101,6 +106,7 @@ export class PreguntasController {
 
   // Obtener preguntas por tipo
   @Get('tipo/:tipo')
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Obtener preguntas por tipo (solo del usuario autenticado)' })
   @ApiParam({ name: 'tipo', description: 'Tipo de pregunta' })
   @ApiResponse({ status: 200, description: 'Lista de preguntas filtradas' })
