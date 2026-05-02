@@ -14,6 +14,8 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest()
     // Obtener el token
     const token = this.extractTokenFromHeader(request)
+
+    console.log('Token recibido:', token ? 'Si' : 'No');
     
     // Verificar que haya token
     if(!token){
@@ -25,7 +27,14 @@ export class AuthGuard implements CanActivate {
       // Payload = Carga útil 
       const payload = await this.jwtService.verifyAsync(token) 
       // Agregamos a nuestra solicitud el usuario que verificamos
-      request['user'] = payload
+      request['user'] = {
+        id: payload.sub || payload.id,
+        email: payload.email,
+        name: payload.name,
+        ...payload 
+      }; 
+
+      console.log('Usuario solicitado:', request['user'])
     } catch {
       throw new UnauthorizedException('Token expirado o invalido')
     }

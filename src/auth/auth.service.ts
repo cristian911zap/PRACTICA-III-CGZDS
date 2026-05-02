@@ -42,7 +42,7 @@ export class AuthService {
     
     responseUser.id = (await savedUser).id; 
     responseUser.email = (await savedUser).email; 
-    responseUser.name = (await savedUser).email; 
+    responseUser.name = (await savedUser).name; 
 
     return responseUser; 
   }
