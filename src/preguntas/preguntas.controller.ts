@@ -26,12 +26,6 @@ import { Pregunta } from './entities/pregunta.entity';
 @UseGuards(AuthGuard)
 export class PreguntasController {
   constructor(private readonly preguntasService: PreguntasService ) {}
-
-  @Get('test')
-  test() {
-    return { message: 'Ruta de preguntas funcionando' }; 
-  }
-
   // Crear pregunta
   @Post()
   @ApiOperation({ summary: 'Crear una nueva pregunta' })
