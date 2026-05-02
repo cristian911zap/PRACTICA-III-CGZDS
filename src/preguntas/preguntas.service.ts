@@ -91,9 +91,14 @@ export class PreguntasService {
     }
     
     // Actualizar campos
-    Object.assign(pregunta, updatePreguntaDto);
+    pregunta.tipoPregunta = updatePreguntaDto.tipoPregunta ?? pregunta.tipoPregunta;
+    pregunta.pregunta = updatePreguntaDto.pregunta ?? pregunta.pregunta;
+    pregunta.respuesta = updatePreguntaDto.respuesta ?? pregunta.respuesta;
+    pregunta.valor = updatePreguntaDto.valor ?? pregunta.valor;
     
-    return await this.preguntaRepository.save(pregunta);
+    const resultado = await this.preguntaRepository.save(pregunta);
+
+    return resultado; 
   }
 
   async remove(id: string, usuarioId: number): Promise<void> {

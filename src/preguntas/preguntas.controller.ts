@@ -80,7 +80,9 @@ export class PreguntasController {
     @Req() req: any
   ) {
     const usuarioId = req.user.id;
-    return this.preguntasService.update(id, updatePreguntaDto, usuarioId);
+    const resultado = this.preguntasService.update(id, updatePreguntaDto, usuarioId);
+    
+    return resultado; 
   }
 
   // Eliminar pregunta
