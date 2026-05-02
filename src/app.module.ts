@@ -9,11 +9,11 @@ import { PreguntasModule } from './preguntas/preguntas.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'practica-3',
+      host: 'mysql-8753c01-lacuentaalt54-f2431.l.aivencloud.com',
+      port: 13861,
+      username: 'avnadmin',
+      password: 'AVNS_PV8s_DQgpkN-ejCNwLE',
+      database: 'defaultdb',
       autoLoadEntities: true,
       synchronize: true,
     }),
