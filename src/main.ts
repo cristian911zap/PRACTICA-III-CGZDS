@@ -16,7 +16,7 @@ async function bootstrap() {
     .setDescription('API para gestión de preguntas con autenticación JWT')
     .setVersion('1.0')
     .addServer('http://localhost:3000', 'Servidor local de desarrollo')
-    .addServer('https://baseline-crud.onrender.com', 'Servidor de producción (Render)')
+    .addServer('https://practica-iii-cgzds.onrender.com', 'Servidor de producción (Render)')
     .addBearerAuth(
       {
         type: 'http',
