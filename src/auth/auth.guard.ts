@@ -14,8 +14,6 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest()
     // Obtener el token
     const token = this.extractTokenFromHeader(request)
-
-    console.log('Token recibido:', token ? 'Si' : 'No');
     
     // Verificar que haya token
     if(!token){
@@ -33,8 +31,6 @@ export class AuthGuard implements CanActivate {
         name: payload.name,
         ...payload 
       }; 
-
-      console.log('Usuario solicitado:', request['user'])
     } catch {
       throw new UnauthorizedException('Token expirado o invalido')
     }
