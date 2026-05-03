@@ -12,8 +12,8 @@ async function bootstrap() {
     }
   ));
   const config = new DocumentBuilder()
-    .setTitle('API de Preguntas')
-    .setDescription('API para gestión de preguntas con autenticación JWT')
+    .setTitle('API de Movimientos')
+    .setDescription('API para movimientos con autenticación JWT')
     .setVersion('1.0')
     .addServer('http://localhost:3000', 'Servidor local de desarrollo')
     .addServer('https://practica-iii-cgzds.onrender.com', 'Servidor de producción (Render)')
